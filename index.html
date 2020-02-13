@@ -6,7 +6,11 @@
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.css"
+    />
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <div class="container">
@@ -15,9 +19,15 @@
         <p>❤️</p>
         <img src="./assets/githublogo.png" alt="GitHub Logo" />
       </div>
+      <nav>
+        <button class="back">back</button>
+        <p id="viewing"></p>
+        <button class="forward">forward</button>
+      </nav>
       <div class="cards"></div>
     </div>
+    <script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="module" src="GitHubCard/index.js"></script>
+    <script src="GitHubCard/index.js"></script>
   </body>
 </html>

@@ -181,6 +181,7 @@ body {
   box-shadow: 0 1px 6px -2px #000;
   background-color: #fff;
   margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .card img {
@@ -189,6 +190,11 @@ body {
   border-radius: 3px;
   margin-right: 20px;
   object-fit: cover;
+  flex: 0 0 150px;
+}
+
+.card .card-info {
+  flex: 0 1 50%;
 }
 
 .card .name {
@@ -204,4 +210,58 @@ body {
   font-size: 1.8rem;
   font-style: italic;
   margin: 3px 0 10px;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  visibility: hidden;
+}
+
+#viewing {
+  color: #fff;
+  font-size: 2rem;
+  padding: 1rem 0;
+}
+
+nav button {
+  background: none;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: 1px solid #fff;
+}
+
+button.forward {
+  visibility: hidden;
+}
+
+.calendar {
+  flex: 0 0 100%;
+  border: none;
+  margin-top: 1rem;
+  min-height: unset;
+}
+
+.calendar svg {
+  width: 100%;
+}
+
+.calendar button {
+  font-size: 1.5rem;
+  background: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.contrib-footer {
+  display: none;
+}
+
+#user-activity-overview {
+  display: none;
 }
