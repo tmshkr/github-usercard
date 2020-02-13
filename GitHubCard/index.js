@@ -1,3 +1,4 @@
+import config from "./config.js";
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
@@ -41,10 +42,12 @@ const usernames = [
 ];
 
 usernames.forEach(username => {
-  axios.get(`https://api.github.com/users/${username}`).then(({ data }) => {
-    const card = createCard(data);
-    cards.appendChild(card);
-  });
+  axios
+    .get(`https://api.github.com/users/${username}`, config)
+    .then(({ data }) => {
+      const card = createCard(data);
+      cards.appendChild(card);
+    });
 });
 
 /* Step 3: Create a function that accepts a single object as its only argument,
