@@ -16,10 +16,16 @@ function reset() {
   nav.style.visibility = null;
   clearCards();
   usernames.forEach(username => {
-    axios.get(`https://api.github.com/users/${username}`).then(({ data }) => {
-      const card = createCard(data);
-      cards.appendChild(card);
-    });
+    axios
+      .get(`https://api.github.com/users/${username}`)
+      .then(({ data }) => {
+        const card = createCard(data);
+        cards.appendChild(card);
+      })
+      .catch(err => {
+        console.log(err.response.data.message);
+        cards.innerHTML = `<label>${err.response.data.message}</label>`;
+      });
   });
 }
 
@@ -65,9 +71,14 @@ function createCard(props) {
         nav.style.visibility = "visible";
         viewing.innerText = `${props.login}: followers`;
         clearCards();
-        followers.forEach(f => {
-          cards.appendChild(createCard(f));
-        });
+        followers
+          .forEach(f => {
+            cards.appendChild(createCard(f));
+          })
+          .catch(err => {
+            console.log(err.response.data.message);
+            cards.innerHTML = `<label>${err.response.data.message}</label>`;
+          });
       });
     };
   }
@@ -80,9 +91,14 @@ function createCard(props) {
         nav.style.visibility = "visible";
         viewing.innerText = `${props.login}: following`;
         clearCards();
-        following.forEach(f => {
-          cards.appendChild(createCard(f));
-        });
+        following
+          .forEach(f => {
+            cards.appendChild(createCard(f));
+          })
+          .catch(err => {
+            console.log(err.response.data.message);
+            cards.innerHTML = `<label>${err.response.data.message}</label>`;
+          });
       });
     };
   }

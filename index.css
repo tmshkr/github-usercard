@@ -265,3 +265,9 @@ button.forward {
 #user-activity-overview {
   display: none;
 }
+
+div.cards > label {
+  font-size: 2rem;
+  background: #eee;
+  line-height: 1.1;
+}
