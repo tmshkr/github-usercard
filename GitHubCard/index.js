@@ -60,7 +60,9 @@ function createCard(props) {
   props.bio && (bio.innerText = `Bio: ${props.bio}`);
 
   showGraph.onclick = function() {
-    new GitHubCalendar(`.${props.login}.calendar`, props.login);
+    new GitHubCalendar(`.${props.login}.calendar`, props.login, {
+      responsive: true
+    });
   };
 
   if (props.followers) {
