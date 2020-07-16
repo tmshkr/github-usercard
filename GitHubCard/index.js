@@ -5,24 +5,24 @@ document.querySelector("button.back").onclick = reset;
 const usernames = [
   "bigknell",
   "dustinmyers",
-  "jackskim",
+  "jskway",
   "justsml",
   "luishrd",
   "tetondan",
-  "tmshkr"
+  "tmshkr",
 ];
 
 function reset() {
   nav.style.visibility = null;
   clearCards();
-  usernames.forEach(username => {
+  usernames.forEach((username) => {
     axios
       .get(`https://api.github.com/users/${username}`)
       .then(({ data }) => {
         const card = createCard(data);
         cards.appendChild(card);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.response.data.message);
         cards.innerHTML = `<label>${err.response.data.message}</label>`;
       });
@@ -59,49 +59,49 @@ function createCard(props) {
   profileLink.innerHTML = `Profile: <a href="${props.html_url}">${props.html_url}</a>`;
   props.bio && (bio.innerText = `Bio: ${props.bio}`);
 
-  showGraph.onclick = function() {
+  showGraph.onclick = function () {
     new GitHubCalendar(`.${props.login}.calendar`, props.login, {
-      responsive: true
+      responsive: true,
     });
   };
 
   if (props.followers) {
     followers.innerHTML = `Followers: <a href="https://api.github.com/users/${props.login}/followers">${props.followers}</a>`;
-    followers.children[0].onclick = function(e) {
+    followers.children[0].onclick = function (e) {
       e.preventDefault();
-      getUsers(e.target.href).then(followers => {
-        nav.style.visibility = "visible";
-        viewing.innerText = `${props.login}: followers`;
-        clearCards();
-        followers
-          .forEach(f => {
+      getUsers(e.target.href)
+        .then((followers) => {
+          nav.style.visibility = "visible";
+          viewing.innerText = `${props.login}: followers`;
+          clearCards();
+          followers.forEach((f) => {
             cards.appendChild(createCard(f));
-          })
-          .catch(err => {
-            console.log(err.response.data.message);
-            cards.innerHTML = `<label>${err.response.data.message}</label>`;
           });
-      });
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+          cards.innerHTML = `<label>${err.response.data.message}</label>`;
+        });
     };
   }
 
   if (props.following) {
     following.innerHTML = `Following: <a href="https://api.github.com/users/${props.login}/following">${props.following}</a>`;
-    following.children[0].onclick = function(e) {
+    following.children[0].onclick = function (e) {
       e.preventDefault();
-      getUsers(e.target.href).then(following => {
-        nav.style.visibility = "visible";
-        viewing.innerText = `${props.login}: following`;
-        clearCards();
-        following
-          .forEach(f => {
+      getUsers(e.target.href)
+        .then((following) => {
+          nav.style.visibility = "visible";
+          viewing.innerText = `${props.login}: following`;
+          clearCards();
+          following.forEach((f) => {
             cards.appendChild(createCard(f));
-          })
-          .catch(err => {
-            console.log(err.response.data.message);
-            cards.innerHTML = `<label>${err.response.data.message}</label>`;
           });
-      });
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+          cards.innerHTML = `<label>${err.response.data.message}</label>`;
+        });
     };
   }
 
